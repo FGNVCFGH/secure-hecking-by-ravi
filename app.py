@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template_string, request, redirect, url_for, session, send_from_directory
 import os
 
@@ -50,8 +49,8 @@ def home():
             animation: flicker 2s infinite;
         }
         @keyframes flicker {
-            0%, 100% { opacity: 1; text-shadow: 0 0 5px #ff0000; }
-            50% { opacity: 0.6; text-shadow: 0 0 10px #0f0; }
+            0%, 100% { text-shadow: 0 0 5px #ff0000; }
+            50% { text-shadow: 0 0 10px #0f0; }
         }
         .content {
             position: relative;
@@ -186,7 +185,7 @@ def home():
         canvas.height = window.innerHeight;
 
         const letters = "01";
-        const fontSize = 14;
+        const fontSize = 18;
         const columns = canvas.width / fontSize * 1.5;
         const drops = Array.from({ length: columns }).fill(1);
 
@@ -195,7 +194,7 @@ def home():
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.font = fontSize + "px monospace";
             for (let i = 0; i < drops.length; i++) {
-                ctx.fillStyle = Math.random() > 0.5 ? "#0f0" : "#f00";
+                ctx.fillStyle = "#0f0";
                 const text = letters[Math.floor(Math.random() * letters.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -204,7 +203,7 @@ def home():
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 40);
+        setInterval(drawMatrix, 25);
         </script>
     </body>
     </html>
