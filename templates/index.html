@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Hacker Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="content">
+        <h1 class="glitch">⚠ Secure Hacker Web ⚠</h1>
+        <h2 class="glitch dev-name">⚠ Developed by Raj Panchal ⚠</h2>
+
+        <div class="file-box">
+            <h3 class="file-title">💾 Uploaded Files</h3>
+            <ul>
+                {% for f in file_links %}
+                    <li><a href="/download/{{ f }}">{{ f }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% if is_admin %}
+        <div class="upload-form">
+            <form method="POST" enctype="multipart/form-data" onsubmit="playUploadEffect()">
+                <input type="file" name="file" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="secret-heart" onclick="showModal()">❤️</div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <h3>Admin Access</h3>
+            <input type="password" id="secretPassword" placeholder="Enter Password"><br>
+            <button onclick="submitPassword()">Login</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal() {
+            document.getElementById("loginModal").style.display = "flex";
+        }
+
+        function submitPassword() {
+            const entered = document.getElementById("secretPassword").value;
+            const correct = "{{ password }}";
+
+            if (entered === correct) {
+                fetch("/auto-login", { method: "POST" }).then(() => location.reload());
+            } else {
+                alert("Wrong password!");
+            }
+        }
+
+        function playUploadEffect() {
+            const beep = new Audio("https://www.soundjay.com/button/sounds/button-29.mp3");
+            beep.play();
+            document.body.style.boxShadow = "0 0 60px #0f0 inset";
+            setTimeout(() => {
+                document.body.style.boxShadow = "none";
+            }, 300);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById("loginModal").style.display = "none";
+            }
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='matrix.js') }}"></script>
+</body>
+</html>
