@@ -37,26 +37,10 @@ def home():
             background: black;
             color: #00ff00;
             font-family: 'Share Tech Mono', monospace;
-            overflow: hidden;
-        }
-        canvas {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: 0;
-            opacity: 0.1;
-        }
-        * {
-            animation: flicker 2s infinite;
-        }
-        @keyframes flicker {
-            0%, 100% { text-shadow: 0 0 5px #ff0000; }
-            50% { text-shadow: 0 0 10px #0f0; }
         }
         .content {
-            position: relative;
-            z-index: 1;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
         li a {
             color: #0f0;
@@ -128,8 +112,6 @@ def home():
         </style>
     </head>
     <body>
-        <canvas id="matrixCanvas"></canvas>
-
         <div class="content">
             <h1>⚠ Secure Hacker Web ⚠</h1>
             <h2>⚠ Developed by Raj Panchal ⚠</h2>
@@ -178,32 +160,6 @@ def home():
                 alert("Wrong password!");
             }
         }
-
-        const canvas = document.getElementById("matrixCanvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const letters = "01";
-        const fontSize = 18;
-        const columns = canvas.width / fontSize * 1.5;
-        const drops = Array.from({ length: columns }).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.font = fontSize + "px monospace";
-            for (let i = 0; i < drops.length; i++) {
-                ctx.fillStyle = "#0f0";
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 25);
         </script>
     </body>
     </html>
