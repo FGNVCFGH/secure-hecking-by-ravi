@@ -7,6 +7,11 @@ UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ADMIN_PASSWORD = '192856'
 
+# ✅ Google Site Verification Route
+@app.route('/googlefcb469fbe4112161.html')
+def google_verify():
+    return 'google-site-verification: googlefcb469fbe4112161.html'
+
 @app.route('/auto-login', methods=['POST'])
 def auto_login():
     session['logged_in'] = True
@@ -138,7 +143,6 @@ def home():
         color: #0f0;
     }
 
-    /* RED GLOW EFFECT */
     .glow-red {
         color: red;
         animation: glow 1s infinite alternate;
@@ -208,7 +212,7 @@ def home():
         }
     }
 
-    // MATRIX BACKGROUND
+    // Matrix background animation
     const canvas = document.getElementById("matrix");
     const ctx = canvas.getContext("2d");
 
