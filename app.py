@@ -7,11 +7,10 @@ UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ADMIN_PASSWORD = '192856'
 
-# ✅ Google Site Verification Route
+# ✅ Google Site Verification Route (Corrected with content-type)
 @app.route('/googlefcb469fbe4112161.html')
 def google_verify():
-    return 'google-site-verification: googlefcb469fbe4112161.html'
-
+    return 'google-site-verification: google2af6689fa38638cf.html', 200, {'Content-Type': 'text/html'}
 @app.route('/auto-login', methods=['POST'])
 def auto_login():
     session['logged_in'] = True
