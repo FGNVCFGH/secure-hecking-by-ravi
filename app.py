@@ -8,9 +8,9 @@ UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ADMIN_PASSWORD = '192856'
 
-# ✅ Google Site Verification Route (Optional extra method)
+# ✅ Google Site Verification File (HTML file method)
 @app.route('/googlefcb469fbe4112161.html')
-def google_verify():
+def google_verification_file():
     return 'google-site-verification: googlefcb469fbe4112161.html', 200, {'Content-Type': 'text/html'}
 
 @app.route('/auto-login', methods=['POST'])
@@ -35,7 +35,6 @@ def home():
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="googlefcb469fbe4112161" />
     <title>Secure Hacker Web</title>
     <style>
     html, body {
